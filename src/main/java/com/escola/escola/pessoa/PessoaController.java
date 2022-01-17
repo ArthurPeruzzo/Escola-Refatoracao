@@ -1,8 +1,11 @@
 package com.escola.escola.pessoa;
 
+import com.escola.escola.endereco.Endereco;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Api("Pessoa")
 @RestController
@@ -11,12 +14,8 @@ public class PessoaController {
 
     final PessoaService pessoaService;
 
-    final
-    PessoaRepository pessoaRepository;
-
-    public PessoaController(PessoaService pessoaService, PessoaRepository pessoaRepository) {
+    public PessoaController(PessoaService pessoaService) {
         this.pessoaService = pessoaService;
-        this.pessoaRepository = pessoaRepository;
     }
 
     @GetMapping("/buscar/{id}")
@@ -42,6 +41,12 @@ public class PessoaController {
     @ApiOperation(value = "Deletar pessoa por id")
     public void deletarPessoa(@PathVariable(value = "id") Long id){
         pessoaService.deletarPessoa(id);
+    }
+
+    @GetMapping("/buscarendereco/{id}")
+    @ApiOperation(value = "Buscar endereços da pessoa por id")
+    public List<Endereco> buscaPessoaComSeusEnderecosPorId(@PathVariable(value = "id") Long id){
+        return pessoaService.buscaPessoaComSeusEnderecosPorId(id);
     }
 
 }

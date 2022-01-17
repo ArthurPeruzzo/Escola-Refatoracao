@@ -1,6 +1,9 @@
 package com.escola.escola.pessoa;
 
+import com.escola.escola.endereco.Endereco;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public record PessoaService(PessoaRepository pessoaRepository) {
@@ -20,6 +23,10 @@ public record PessoaService(PessoaRepository pessoaRepository) {
 
     public void deletarPessoa(Long id) {
         pessoaRepository.deleteById(id);
+    }
+
+    public List<Endereco> buscaPessoaComSeusEnderecosPorId(Long id){
+        return pessoaRepository.buscaPessoaComSeusEnderecosPorId(id);
     }
 
 }

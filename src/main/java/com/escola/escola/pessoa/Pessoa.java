@@ -1,11 +1,14 @@
 package com.escola.escola.pessoa;
 
+import com.escola.escola.endereco.Endereco;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Data
 @Entity
@@ -29,5 +32,10 @@ public class Pessoa {
     @CPF(message = "CPF inválido!")
     @NotNull
     private String cpf;
+
+    @OneToMany
+    @JsonIgnore
+    @JoinColumn(name = "pessoa")
+    List<Endereco> enderecos;
 
 }
