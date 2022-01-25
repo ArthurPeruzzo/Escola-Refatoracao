@@ -1,5 +1,6 @@
 package com.escola.escola.pessoa;
 
+import com.escola.escola.contato.Contato;
 import com.escola.escola.endereco.Endereco;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
@@ -37,5 +38,9 @@ public class Pessoa {
     @JsonIgnore
     @JoinColumn(name = "pessoa")
     List<Endereco> enderecos;
+
+    @OneToMany
+    @JoinColumn(name = "pessoa")
+    List<Contato> contatos;
 
 }
